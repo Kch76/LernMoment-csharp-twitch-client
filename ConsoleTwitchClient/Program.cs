@@ -25,10 +25,17 @@ namespace ConsoleTwitchClient
         private static async Task ShowUserDetails(string userName)
         {
             TwitchApi.SetClientId(clientId);
+
+            Console.WriteLine("ShowUserDetails: Hole Informationen über den Benutzer: " + userName);
+
+            // Asynchron die Anfrage absetzten und auf Antwort warten.
             User user = await TwitchApi.GetUser(userName);
 
-            Console.WriteLine("DisplayName: " + user.DisplayName);
-            Console.WriteLine("Bio: " + user.Bio);
+            Console.WriteLine("\nShowUserDetails: Informationen über den Benutzer: " + user.Name);
+            Console.WriteLine("Biographie: " + user.Bio);
+            Console.WriteLine("Id: " + user.Id);
+            Console.WriteLine("Type: " + user.Type);
+            Console.WriteLine("Created at: " + user.CreatedAt);
         }
     }
 }
