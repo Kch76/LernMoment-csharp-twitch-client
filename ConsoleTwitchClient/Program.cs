@@ -14,6 +14,19 @@ namespace ConsoleTwitchClient
 
         static void Main(string[] args)
         {
+            ShowUserDetails(tutorialUserName);
+            ShowUserDetails(manyFollowerUserName);
+
+            Console.ReadLine();
+        }
+
+        private static async Task ShowUserDetails(string userName)
+        {
+            TwitchApi.SetClientId(clientId);
+            User user = await TwitchApi.GetUser(userName);
+
+            Console.WriteLine("DisplayName: " + user.DisplayName);
+            Console.WriteLine("Bio: " + user.Bio);
         }
     }
 }
