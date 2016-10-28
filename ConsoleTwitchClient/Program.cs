@@ -19,6 +19,7 @@ namespace ConsoleTwitchClient
             ShowUserDetails(tutorialUserName);
             ShowUserDetails(manyFollowerUserName);
             ShowChannelDetails(largeChannelName);
+            ShowBadges(largeChannelName);
 
             Console.ReadLine();
         }
@@ -57,5 +58,21 @@ namespace ConsoleTwitchClient
             Console.WriteLine("Logo: " + channel.Logo);
         }
 
+        private static async Task ShowBadges(string channelName)
+        {
+            TwitchApi.SetClientId(clientId);
+
+            Console.WriteLine("ShowBadges: Hole Informationen über die Badges vom Channel: " + channelName);
+
+            // Asynchron die Anfrage absetzten und auf Antwort warten.
+            BadgeResponse response = await TwitchApi.GetChannelBadges(channelName);
+            var badges = response.ChannelBadges;
+
+            Console.WriteLine("\nShowBadges: Channel {0} hat: {1} Badges", channelName, badges.Count);
+            foreach (var badge in badges)
+            {
+                Console.WriteLine("BadgeName: " + badge.BadgeName);
+            }
+        }
     }
 }
