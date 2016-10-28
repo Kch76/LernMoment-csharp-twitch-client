@@ -18,6 +18,7 @@ namespace ConsoleTwitchClient
         {
             ShowUserDetails(tutorialUserName);
             ShowUserDetails(manyFollowerUserName);
+            ShowChannelDetails(largeChannelName);
 
             Console.ReadLine();
         }
@@ -37,5 +38,24 @@ namespace ConsoleTwitchClient
             Console.WriteLine("Type: " + user.Type);
             Console.WriteLine("Created at: " + user.CreatedAt);
         }
+
+        private static async Task ShowChannelDetails(string channelName)
+        {
+            // Sicherstellen, dass die clientId gesetzt ist. Ohne läuft die TwitchAPI nicht!
+            TwitchApi.SetClientId(clientId);
+
+            Console.WriteLine("ShowChannelDetails: Hole Informationen über den Channel: " + channelName);
+
+            // Asynchron die Anfrage absetzten und auf Antwort warten.
+            Channel channel = await TwitchApi.GetTwitchChannel(channelName);
+
+            Console.WriteLine("\nShowChannelDetails: Informationen über den Channel: " + channelName);
+            Console.WriteLine("DisplayName: " + channel.DisplayName);
+            Console.WriteLine("Spiel: " + channel.Game);
+            Console.WriteLine("Background: " + channel.Background);
+            Console.WriteLine("Follower: " + channel.Followers);
+            Console.WriteLine("Logo: " + channel.Logo);
+        }
+
     }
 }
