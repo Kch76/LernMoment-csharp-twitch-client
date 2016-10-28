@@ -7,6 +7,8 @@ namespace ConsoleTwitchClient
 {
     class Program
     {
+        // TODO: Ersetze bitte die Werte von clientId und tutorialUserName, weil ich
+        // beides löschen werde oder es schon gelöscht habe!
         private static readonly string clientId = "865mxocrji3lctk8kscy3zgvkxm7t3e";
         private static readonly string tutorialUserName = "tutorialtestuser";
         private static readonly string manyFollowerUserName = "jonnyzocktyt";
